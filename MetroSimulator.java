@@ -66,7 +66,7 @@ public class MetroSimulator{
 	public static EndStation makeOrangeLine(){
 		va_square.connect(clarendon);
 		
-		//connect the other stations here
+		//connect the other stations her
 
 		return va_square;
 
