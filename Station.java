@@ -5,6 +5,7 @@ public class Station {
     boolean inService;
     Station next;
     Station prev;
+    int length;
 
     // constructor
     public Station(String c, String n) {
@@ -54,10 +55,30 @@ public class Station {
         }
     }
 
-    // hardest method
+
+
     public int tripLength(Station other) {
         // use recursion
+        //so basically the steps from this to other
+        //make an integer variable associated with this class
         
+        //base case: this.next == other, traversed the whole length
+        return recursiveHelper(other, this);
+    }
+
+    public int recursiveHelper(Station other, Station iterator) {
+        Station it = iterator;
+        if (it.equals(other)) {
+            return it.length;
+        }
+        else if (it.next != null) {
+            it.next.length = it.length + 1;
+            it = it.next;
+            System.out.println(it.toString());
+            return recursiveHelper(other, it);
+        }
+
+        //all else fails
         return 0;
     }
 

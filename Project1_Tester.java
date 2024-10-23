@@ -281,7 +281,7 @@ public class Project1_Tester {
     s1.makeEnd();
     s4.makeEnd();
 
-    assertEquals(1, s1.tripLength(s2));
+    assertEquals(1, s1.tripLength(s2)); 
     assertEquals(3, s1.tripLength(s4));
     assertEquals(0, s1.tripLength(s1));
 

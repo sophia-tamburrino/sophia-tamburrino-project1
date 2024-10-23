@@ -73,9 +73,8 @@ public class MetroSimulator {
 		foggy_bottom.connect(farragut_west);
 		farragut_west.connect(mcpherson_square);
 		mcpherson_square.connect(metro_center);
-		// is this what I do here?
-		// metro_center.addTransferStationPrev(mcpherson_square);
-		// metro_center.addTransferStationNext(federal_triangle);
+
+		//first time, connect it
 		metro_center.connect(federal_triangle);
 		federal_triangle.connect(smithsonian);
 
@@ -85,16 +84,6 @@ public class MetroSimulator {
 		return va_square;
 
 	}
-
-	//desired:
-	//TRANSFERSTATION Metro Center: orange/red/purple line, in service: true, previous station: McPherson Square, next station: Federal Triangle
-	// Transfers:
-	// STATION Farragut North: red line, in service: true, previous station: Dupont Circle, next station: Metro Center
-	// STATION Gallery Place: red line, in service: true, previous station: Metro Center, next station: Judiciary Square
-
-	//getting:
-	// TRANSFERSTATION Metro Center: orange/red/purple line, in service: true, previous station: Farragut North, next station: Gallery Place
-    //     Transfers:
 
 	public static EndStation makeRedLine() {
 		woodley_park.connect(dupont_circle);

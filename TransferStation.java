@@ -13,14 +13,14 @@ public class TransferStation extends Station {
         inService = true;
     }
 
-    // linked array list? i think?
+    //will use after first connection
     public void addTransferStationNext(Station other) {
         otherStations.add(other);
         transferNext = other;
         other.prev = this;
     }
 
-    // confused rn
+    //use after first connection
     public void addTransferStationPrev(Station other) {
         otherStations.add(other);
         transferPrev = other;
