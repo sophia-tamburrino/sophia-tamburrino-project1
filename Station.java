@@ -1,76 +1,82 @@
 public class Station {
-    //doubly linked list structure
+    // doubly linked list structure
     String color;
     String name;
     boolean inService;
     Station next;
     Station prev;
 
-    //constructor
+    // constructor
     public Station(String c, String n) {
         this.color = c;
         this.name = n;
-        //idk if I have to include these yet?
+        // idk if I have to include these yet?
         inService = true;
-        next = null;
-        prev = null;
+        // next = null;
+        // prev = null;
     }
-
-    //i thought this was the same as addnext
+    //need to double check if this is hard coded? I don't think so but just to be sure
+    public boolean equals(Station other) {
+        if(other.name.equals(this.name) && other.color.equals(this.color)) {
+            return true;
+        }
+        return false;
+    }
+    // i thought this was the same as addnext
     public void connect(Station other) {
         this.next = other;
         other.prev = this;
     }
 
-    //assign next value
+    // assign next value
     public void addNext(Station other) {
         this.next = other;
-    }
-    
-    //assign previous value
-    public void addPrev(Station other) {
-        this.prev = other;
+        other.prev = this;
     }
 
-    //just return boolean value. starts off as true
+    // assign previous value
+    public void addPrev(Station other) {
+        this.prev = other;
+        other.next = this;
+    }
+
+    // just return boolean value. starts off as true
     public boolean isAvailable() {
         return inService;
     }
 
-    //switch boolean value
+    // switch boolean value
     public void switchAvailable() {
-        if(inService) {
+        if (inService) {
             inService = false;
-        }
-        else {
+        } else {
             inService = true;
         }
-    }   
+    }
 
-    //hardest method
+    // hardest method
     public int tripLength(Station other) {
-        
-        //use recursion
+
+        // use recursion
         return 0;
     }
 
-    //have other methods for endstation and transferstation
+    // have other methods for endstation and transferstation
     public String toString() {
         String prevStr = "";
         String nextStr = "";
-        if(prev == null) {
+        if (prev == null) {
             prevStr = "none";
-        }
-        else {
+        } else {
             prevStr = prev.name;
         }
-        if(next == null) {
+        if (next == null) {
             nextStr = "none";
-        }
-        else {
+        } else {
             nextStr = next.name;
         }
-        return "STATION " + name + ": " + color + " line, in service: " + inService + ", previous station: " + prevStr + ", next station: " + nextStr;
+        return "STATION " + name + ": " + color + " line, in service: " + inService + ", previous station: " + prevStr
+                + ", next station: " + nextStr;
     }
 
 }

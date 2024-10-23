@@ -1,32 +1,32 @@
-public class MetroSimulator{
-	
-		// make all stations
-		public static EndStation va_square;
-		public static Station clarendon;
-		public static Station court_house;
-		public static Station rosslyn;
-		public static Station foggy_bottom;
-		public static Station farragut_west;
-		public static Station mcpherson_square;
-		public static TransferStation metro_center;
-		public static Station federal_triangle;
-		public static EndStation smithsonian;
+public class MetroSimulator {
 
-		public static EndStation woodley_park;
-		public static Station dupont_circle;
-		public static Station farragut_north;
-		// Metro Center defined above
-		public static Station gallery_place;
-		public static EndStation judiciary_square;
+	// make all stations
+	public static EndStation va_square;
+	public static Station clarendon;
+	public static Station court_house;
+	public static Station rosslyn;
+	public static Station foggy_bottom;
+	public static Station farragut_west;
+	public static Station mcpherson_square;
+	public static TransferStation metro_center;
+	public static Station federal_triangle;
+	public static EndStation smithsonian;
 
-		public static EndStation s1;
-		public static Station s2;
-		public static Station s3;
-		// Metro Center defined above
-		public static Station s4;
-		public static EndStation s5;
+	public static EndStation woodley_park;
+	public static Station dupont_circle;
+	public static Station farragut_north;
+	// Metro Center defined above
+	public static Station gallery_place;
+	public static EndStation judiciary_square;
 
-	public static void main(String[] args){
+	public static EndStation s1;
+	public static Station s2;
+	public static Station s3;
+	// Metro Center defined above
+	public static Station s4;
+	public static EndStation s5;
+
+	public static void main(String[] args) {
 		initialize();
 		makeOrangeLine();
 		makeRedLine();
@@ -36,7 +36,7 @@ public class MetroSimulator{
 		System.out.println("There are " + stops + " stops between Virginia Square and Metro Center");
 	}
 
-	public static void initialize(){
+	public static void initialize() {
 		va_square = new EndStation("orange", "Virginia Square");
 		clarendon = new Station("orange", "Clarendon");
 		court_house = new Station("orange", "Court House");
@@ -63,52 +63,68 @@ public class MetroSimulator{
 		s5 = new EndStation("purple", "S5");
 	}
 
-	public static EndStation makeOrangeLine(){
-		//connecting stations
+	public static EndStation makeOrangeLine() {
+		// connecting stations
 		va_square.connect(clarendon);
+		va_square.makeEnd();
 		clarendon.connect(court_house);
 		court_house.connect(rosslyn);
 		rosslyn.connect(foggy_bottom);
 		foggy_bottom.connect(farragut_west);
 		farragut_west.connect(mcpherson_square);
 		mcpherson_square.connect(metro_center);
-
-		//is this what I do here?
+		// is this what I do here?
 		metro_center.connect(federal_triangle);
 		federal_triangle.connect(smithsonian);
 
-		//make smithsonian an end.
+		// make smithsonian an end.
 		smithsonian.makeEnd();
 
 		return va_square;
 
 	}
 
-	public static EndStation makeRedLine(){
+	//desired:
+	//TRANSFERSTATION Metro Center: orange/red/purple line, in service: true, previous station: McPherson Square, next station: Federal Triangle
+	// Transfers:
+	// STATION Farragut North: red line, in service: true, previous station: Dupont Circle, next station: Metro Center
+	// STATION Gallery Place: red line, in service: true, previous station: Metro Center, next station: Judiciary Square
+
+	//getting:
+	// TRANSFERSTATION Metro Center: orange/red/purple line, in service: true, previous station: Farragut North, next station: Gallery Place
+    //     Transfers:
+
+	public static EndStation makeRedLine() {
 		woodley_park.connect(dupont_circle);
+		woodley_park.makeEnd();
 		dupont_circle.connect(farragut_north);
 		farragut_north.connect(metro_center);
+		//what
+		metro_center.addTransferStationPrev(farragut_north);
+		metro_center.addTransferStationNext(gallery_place);
+	
+		// again not sure what I do here
 
-		//again not sure what I do here 
-		metro_center.connect(gallery_place);
+		//metro_center.connect(gallery_place);
 		gallery_place.connect(judiciary_square);
 
-		//make judiciary an end.
+		// make judiciary an end.
 		judiciary_square.makeEnd();
 
 		return woodley_park;
 	}
 
-	public static EndStation makePurpleLine(){
+	public static EndStation makePurpleLine() {
 		s1.connect(s2);
+		s1.makeEnd();
 		s2.connect(s3);
 		s3.connect(metro_center);
 
-		//??
+		// ??
 		metro_center.connect(s4);
 		s4.connect(s5);
 
-		//make end
+		// make end
 		s5.makeEnd();
 
 		return s1;
