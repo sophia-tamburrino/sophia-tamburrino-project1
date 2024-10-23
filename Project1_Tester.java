@@ -96,9 +96,7 @@ public class Project1_Tester {
     System.out.println("test TransferStation setup");
 
     TransferStation s1 = new TransferStation("pink", "Museum");
-    System.out.println(s1.toString());
     String expected = "TRANSFERSTATION Museum: pink line, in service: true, previous station: none, next station: none\n\tTransfers: \n";
-    System.out.println(expected);
     assertEquals(expected, s1.toString());
     
     boolean result = false;
@@ -224,9 +222,7 @@ public class Project1_Tester {
         +
         "\tSTATION Gallery Place: red line, in service: true, previous station: Metro Center, next station: Judiciary Square\n";
 
-    System.out.println(expected);
-    System.out.println(next.toString());
-    assertEquals(expected, next.toString()); //error here
+    assertEquals(expected, next.toString());
     next = ((TransferStation) next).otherStations.get(1);
     expected = "STATION Gallery Place: red line, in service: true, previous station: Metro Center, next station: Judiciary Square";
     assertEquals(expected, next.toString());
@@ -262,7 +258,7 @@ public class Project1_Tester {
         +
         "\tSTATION S3: purple line, in service: true, previous station: S2, next station: Metro Center\n" +
         "\tSTATION S4: purple line, in service: true, previous station: Metro Center, next station: S5\n";
-    assertEquals(expected, next.toString()); //error here
+    assertEquals(expected, next.toString()); 
     next = ((TransferStation) next).otherStations.get(3);
     expected = "STATION S4: purple line, in service: true, previous station: Metro Center, next station: S5";
     assertEquals(expected, next.toString());

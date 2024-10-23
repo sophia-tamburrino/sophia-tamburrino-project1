@@ -74,6 +74,8 @@ public class MetroSimulator {
 		farragut_west.connect(mcpherson_square);
 		mcpherson_square.connect(metro_center);
 		// is this what I do here?
+		// metro_center.addTransferStationPrev(mcpherson_square);
+		// metro_center.addTransferStationNext(federal_triangle);
 		metro_center.connect(federal_triangle);
 		federal_triangle.connect(smithsonian);
 
@@ -98,14 +100,11 @@ public class MetroSimulator {
 		woodley_park.connect(dupont_circle);
 		woodley_park.makeEnd();
 		dupont_circle.connect(farragut_north);
-		farragut_north.connect(metro_center);
-		//what
+
+		//after you connect first transfer station, use addTransfer (need to confirm this is not hard coding?)
 		metro_center.addTransferStationPrev(farragut_north);
 		metro_center.addTransferStationNext(gallery_place);
 	
-		// again not sure what I do here
-
-		//metro_center.connect(gallery_place);
 		gallery_place.connect(judiciary_square);
 
 		// make judiciary an end.
@@ -118,10 +117,10 @@ public class MetroSimulator {
 		s1.connect(s2);
 		s1.makeEnd();
 		s2.connect(s3);
-		s3.connect(metro_center);
 
-		// ??
-		metro_center.connect(s4);
+		metro_center.addTransferStationPrev(s3);
+		metro_center.addTransferStationNext(s4);
+
 		s4.connect(s5);
 
 		// make end
