@@ -90,9 +90,9 @@ public class Station {
             visitedStations.add(it);
             value++;
             // inc iterator
-            System.out.println("Before: " + it.toString());
-            System.out.println("After: " + it.toString());
-            System.out.println("Value: " + value);
+            // System.out.println("Before: " + it.toString());
+            // System.out.println("After: " + it.toString());
+            // System.out.println("Value: " + value);
 
             //if it is
             if ((it instanceof TransferStation)) {
@@ -100,7 +100,7 @@ public class Station {
                 for (int i = 0; i < temp.otherStations.size(); i++) {
                     int tempVar = recursiveHelper(other, temp.otherStations.get(i), value, visitedStations);
                     if (tempVar != -1) {
-                        return recursiveHelper(other, temp.otherStations.get(i), value, visitedStations);
+                        return tempVar;
                     }
                 }
             }
@@ -108,9 +108,6 @@ public class Station {
             it = it.next;
             return recursiveHelper(other, it, value, visitedStations);
         }
-
-        // all else fails
-        // return 0;
     }
 
     // have other methods for endstation and transferstation
