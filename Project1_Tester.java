@@ -308,6 +308,7 @@ public class Project1_Tester {
     Station b3 = new Station("blue", "B3");
     Station b4 = new Station("blue", "B4");
     EndStation b5 = new EndStation("blue", "B5");
+  
     b1.connect(b2);
     b2.connect(b3);
     transfer.addTransferStationPrev(b3);
